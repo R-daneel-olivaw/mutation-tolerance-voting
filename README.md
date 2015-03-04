@@ -7,5 +7,6 @@ Course project for uWaterloo cource [CS886](https://cs.uwaterloo.ca/~klarson/tea
 The below will need to be installed in the host machine to compile
 
 * [Python 3.4](https://docs.python.org/3/) for *duhhh*
+* [PyDev](http://pydev.org/manual_101_install.html) eclipse plug-in
 * [Anaconda3](http://continuum.io/downloads#py34) includes below
   * [Pandas](https://pypi.python.org/pypi/pandas) for Module2
