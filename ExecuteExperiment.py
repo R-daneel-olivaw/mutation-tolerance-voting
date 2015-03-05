@@ -11,30 +11,26 @@ def executeExp():
     pr = SushiPref('D:\Lectures\Winter2015\CS886\Project\sushi3_preflib\sushi3_preflib\ED-00015-00000001.soc')
     pr.loadUp()
 
-    #print(df)
-    
     pu = SushiPrefUtil(pr)
     
-    prefEbi = pu.getCount('ebi')
-    prefAnago = pu.getCount('anago')
-    prefMaguro = pu.getCount('maguro')
-    prefIka = pu.getCount('ika')
-    prefUni = pu.getCount('uni')
-    prefSake = pu.getCount('sake')
-    prefTamago = pu.getCount('tamago')
-    prefToro = pu.getCount('toro')
-    prefTekkaMaki = pu.getCount('tekka-maki')
-    prefKappaMaki = pu.getCount('kappa-maki')
+    rank1 = pu.getRankCount('01')
+    rank2 = pu.getRankCount('02')
+    rank3 = pu.getRankCount('03')
+    rank4 = pu.getRankCount('04')
+    rank5 = pu.getRankCount('05')
+    rank6 = pu.getRankCount('06')
+    rank7 = pu.getRankCount('07')
+    rank8 = pu.getRankCount('08')
+    rank9 = pu.getRankCount('09')
+    rank10 = pu.getRankCount('10')
     
-    #print('Ebi', prefEbi)
-    #print('Anago', prefAnago)
-    
-    # fullPref = pd.concat([prefEbi,prefAnago], axis=1)
-    fullPref = DataFrame(dict(s1=prefEbi, s2=prefAnago, s3=prefMaguro, s4=prefIka, s5=prefUni, s6=prefSake, s7=prefTamago, s8=prefToro, s9=prefTekkaMaki, s10=prefKappaMaki))
-    fullPref.columns = ['ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki']
-    fullPref.index.name = 'Rank#'
+    fullPref = DataFrame(dict(r1=rank1, r2=rank2, r3=rank3, r4=rank4, r5=rank5, r6=rank6, r7=rank7, r8=rank8, r9=rank9, r10=rank10))
+    fullPref.index.name = 'SushiName'
     
     print('RESULTS...')
+    
+    fullPref = fullPref.transpose()
+    fullPref.columns = ['ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki']
     print(fullPref)
 
 if __name__ == '__main__':

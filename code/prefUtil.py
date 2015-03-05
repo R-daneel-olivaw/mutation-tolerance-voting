@@ -16,10 +16,10 @@ class SushiPrefUtil(object):
         '''
         self.sushiPref = sPref
     
-    def getCount(self, sushiName):
+    def getRankCount(self, rank):
         df = self.sushiPref.getDf()
         
-        count = df[sushiName].value_counts()
+        count = df[rank].value_counts()
         count = count.sort_index()
         
         return count
