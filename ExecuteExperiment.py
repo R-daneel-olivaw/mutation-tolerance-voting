@@ -40,11 +40,11 @@ def executeExp():
     fullPref.columns = ['ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki']
     print(fullPref)
     
-    
+    '''
     # For Graph Plot
     fullPref.plot()
     plt.show()
-    
+    '''
 
 if __name__ == '__main__':
     from code.prefreaders import SushiPref
