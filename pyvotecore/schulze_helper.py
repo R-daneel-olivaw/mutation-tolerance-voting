@@ -16,8 +16,8 @@
 from pygraph.algorithms.accessibility import accessibility, mutual_accessibility
 from pygraph.classes.digraph import digraph
 from pygraph.algorithms.minmax import maximum_flow
-from condorcet import CondorcetHelper
-from common_functions import matching_keys, unique_permutations
+from pyvotecore.condorcet import CondorcetHelper
+from pyvotecore.common_functions import matching_keys, unique_permutations
 
 PREFERRED_LESS = 1
 PREFERRED_SAME = 2
@@ -116,7 +116,7 @@ class SchulzeHelper(CondorcetHelper):
         try:
             assert round(weight_sum, 5) == round(sum(profile.values()), 5)
         except:
-            print "Proportional completion broke (went from %s to %s)" % (weight_sum, sum(profile.values()))
+            print ("Proportional completion broke (went from %s to %s)" % (weight_sum, sum(profile.values())))
 
         return profile
 
@@ -163,7 +163,7 @@ class SchulzeHelper(CondorcetHelper):
         try:
             assert round(weight_sum, 5) == round(sum(profile.values()), 5)
         except:
-            print "Proportional completion round broke (went from %s to %s)" % (weight_sum, sum(profile.values()))
+            print ("Proportional completion round broke (went from %s to %s)" % (weight_sum, sum(profile.values())))
 
         return profile
 

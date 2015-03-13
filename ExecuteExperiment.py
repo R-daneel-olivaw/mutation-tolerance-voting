@@ -6,6 +6,7 @@ Created on Mar 5, 2015
 import pandas as pd
 import matplotlib.pyplot as plt
 from pandas.core.frame import DataFrame
+from code.sf_vc import PrefCounter
 
 # 'ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki'
 
@@ -25,8 +26,10 @@ def executeExp():
     print(pref_matrix)
     
     # For Graph Plot
-    pref_matrix.plot()
-    plt.show()
+    #pref_matrix.plot()
+    #plt.show()
+    
+    pc = PrefCounter()
 
 if __name__ == '__main__':
     from code.prefreaders import SushiPref

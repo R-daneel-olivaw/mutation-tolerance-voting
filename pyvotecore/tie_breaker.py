@@ -25,7 +25,7 @@ class TieBreaker(object):
     def __init__(self, candidate_range):
         self.ties_broken = False
         self.random_ordering = list(candidate_range)
-        if not isinstance(candidate_range, list):
+        if not isinstance(candidate_range, types.ListType):
             random.shuffle(self.random_ordering)
 
     #
