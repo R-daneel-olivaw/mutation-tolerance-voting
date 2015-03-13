@@ -15,7 +15,7 @@ def executeExp():
     pd.set_option('display.max_columns', 20)
     pd.set_option('display.max_rows', 25)
     
-    pr = SushiPref('D:\Lectures\Winter2015\CS886\Project\sushi3_preflib\sushi3_preflib\ED-00015-00000001.soc')
+    pr = SushiPref('C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc')
     pr.loadUp()
 
     pu = SushiPrefUtil(pr)
