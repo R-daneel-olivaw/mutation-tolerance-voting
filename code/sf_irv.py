@@ -4,10 +4,10 @@ Created on Mar 13, 2015
 @author: Akshat
 '''
 from pyvotecore.schulze_method import SchulzeMethod
-from pyvotecore.stv import STV
+from pyvotecore.irv import IRV
 from code.pref_sf_conv import PrefSFConverter
 
-class ImplSTV(object):
+class ImplIRV(object):
     '''
     classdocs
     '''
@@ -43,8 +43,8 @@ class ImplSTV(object):
         
     def run_irv(self, prefrences):
         
-        output = STV(prefrences, required_winners=3).as_dict()
-        print('STV Winners..')
+        output = IRV(prefrences).as_dict()
+        print('IRV Winners..')
         #print(output)
-        print(output['winners'])
+        print(output['winner'])
         
