@@ -40,7 +40,9 @@ class PrefSFConverter(object):
             
             input_pr.append(i_p)
             
-        print(input_pr)
+        #print(input_pr)
+        
+        return input_pr
             
         
         
