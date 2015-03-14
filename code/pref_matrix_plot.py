@@ -14,11 +14,11 @@ class PrefPlotter(object):
     '''
 
     def load_pref(self):
-        pr = SushiPref('D:\Lectures\Winter2015\CS886\Project\sushi3_preflib\sushi3_preflib\ED-00015-00000001.soc')
-        pr.loadUp()
+        self.raw_pref = SushiPref('D:\Lectures\Winter2015\CS886\Project\sushi3_preflib\sushi3_preflib\ED-00015-00000001.soc')
+        self.raw_pref.loadUp()
     
-        pu = SushiPrefUtil(pr)
-        self.pref_matrix = pu.gen_pref_matrix() 
+        self.pref_util = SushiPrefUtil(self.raw_pref)
+        self.pref_matrix = self.pref_util.gen_pref_matrix() 
     
     
     def __init__(self, pref_path):

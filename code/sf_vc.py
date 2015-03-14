@@ -5,6 +5,7 @@ Created on Mar 13, 2015
 '''
 from pyvotecore.schulze_method import SchulzeMethod
 from pyvotecore.stv import STV
+from code.pref_sf_conv import PrefSFConverter
 
 class PrefCounter(object):
     '''
@@ -12,10 +13,11 @@ class PrefCounter(object):
     '''
 
 
-    def __init__(self):
+    def __init__(self, raw_pref):
         '''
         Constructor
         '''
+        self.processed_pref = PrefSFConverter(raw_pref).convert()
 #         ballots = [
 #                    { "count":3, "ballot":[["A"], ["C"], ["D"], ["B"]] },
 #                    { "count":9, "ballot":[["B"], ["A"], ["C"], ["D"]] },
