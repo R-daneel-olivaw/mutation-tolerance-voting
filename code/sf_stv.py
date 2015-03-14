@@ -3,7 +3,6 @@ Created on Mar 13, 2015
 
 @author: Akshat
 '''
-from pyvotecore.schulze_method import SchulzeMethod
 from pyvotecore.stv import STV
 from code.pref_sf_conv import PrefSFConverter
 
