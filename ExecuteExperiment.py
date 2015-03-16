@@ -4,8 +4,8 @@ Created on Mar 5, 2015
 @author: Akshat
 '''
 from pandas.core.frame import DataFrame
-from code.sf_stv import ImplSTV
-from code.sf_irv import ImplIRV
+from code.sf.sf_stv import ImplSTV
+from code.sf.sf_irv import ImplIRV
 from code.pref_matrix_plot import PrefPlotter
 
 # 'ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki'
