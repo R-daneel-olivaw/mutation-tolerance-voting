@@ -38,12 +38,13 @@ class ImplIRV(object):
 
         self.run_irv(self.processed_pref)
         
-        print('END')
-        
     def run_irv(self, prefrences):
         
         output = IRV(prefrences).as_dict()
-        print('IRV Winners..')
+        print('##IRV Winners##')
         #print(output)
         print(output['winner'])
+        print(output['rounds'])
+        print('##IRV Winners##')
+        print()
         

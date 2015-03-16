@@ -43,7 +43,27 @@ class PrefSFConverter(object):
         #print(input_pr)
         
         return input_pr
-            
+    
+    def convert_single_vote(self):
         
+        df = self.raw_pref.getDf()  
+        df = df.replace([1, 2, 3, 4, 5, 6, 7, 8, 9, 0], ['ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki'])
+        
+        uq_pref = df['01'].value_counts()
+        input_pr = []
+        for index, value in uq_pref.iteritems():
+            #print(index,value)
+            
+            i_p = {}
+            
+            i_pref = index
+            i_count = value
+            
+            i_p['count'] = i_count
+            i_p['ballot'] = i_pref
+            
+            input_pr.append(i_p)
+            
+        return input_pr
         
         

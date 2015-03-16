@@ -38,12 +38,13 @@ class ImplSTV(object):
 
         self.run_irv(self.processed_pref)
         
-        print('END')
-        
     def run_irv(self, prefrences):
         
         output = STV(prefrences, required_winners=3).as_dict()
-        print('STV Winners..')
+        print('##STV Winners##')
         #print(output)
         print(output['winners'])
+        print(output['rounds'])
+        print('##STV Winners##')
+        print()
         

@@ -42,9 +42,14 @@ class SushiPrefUtil(object):
         fullPref.index.name = 'SushiName'
         
         print('RESULTS...')
-        
         fullPref = fullPref.transpose()
-        fullPref.columns = ['ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki']
+        
+        '''
+        Big work arroud in the below line the ordering should have been,
+        ['ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki']
+        but this was not working as the column r10 was being wrongly placed after r1
+        '''
+        fullPref.columns = ['ebi', 'kappa-maki', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki']
         
         fullPref['indexNumber'] = [int(i[1:]) for i in fullPref.index]
         fullPref = fullPref.sort(['indexNumber'], ascending=[True])

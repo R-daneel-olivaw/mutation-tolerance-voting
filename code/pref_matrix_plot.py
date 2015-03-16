@@ -30,6 +30,7 @@ class PrefPlotter(object):
         
         
     def plotGraph(self):
+        
         # Set some Pandas options
         pd.set_option('display.notebook_repr_html', False)
         pd.set_option('display.max_columns', 20)
