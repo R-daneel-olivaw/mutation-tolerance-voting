@@ -55,7 +55,5 @@ class SushiPrefUtil(object):
         fullPref = fullPref.sort(['indexNumber'], ascending=[True])
         fullPref = fullPref.drop('indexNumber', 1)
         
-        print(fullPref)
-        
         return fullPref
         
