@@ -13,7 +13,7 @@ from code.pref_matrix_plot import PrefPlotter
 
 def executeExp():
 
-    pref_plotter = PrefPlotter('D:\Lectures\Winter2015\CS886\Project\sushi3_preflib\sushi3_preflib\ED-00015-00000001.soc')
+    pref_plotter = PrefPlotter('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc')
     #pref_plotter.plotGraph()
     
     pc = ImplSTV(pref_plotter.raw_pref)
