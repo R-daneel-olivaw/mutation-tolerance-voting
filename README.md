@@ -18,7 +18,8 @@ The below will need to be installed in the host machine to compile
 - [x] Process preferences 
 - [x] Plot graph summarizing preferences
 - [x] Implement STV social function
-- [x] Implement IRV social function
+- [x] Implement IRV social function single winner STV
 - [x] Implement Plurality social function
+- [x] Implement Plurality at large social function multiple winner Plurality
 - [ ] Implement noise models
 - [ ] Compare noisy results with noiseless results 
