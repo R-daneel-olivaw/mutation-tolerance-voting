@@ -28,6 +28,9 @@ class PrefPlotter(object):
         self.pref_path = pref_path
         self.load_pref()
         
+    
+    def print_matrix(self):
+        print(self.pref_matrix) 
         
     def plotGraph(self):
         
