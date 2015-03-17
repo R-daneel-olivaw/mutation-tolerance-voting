@@ -7,6 +7,7 @@ from pandas.core.frame import DataFrame
 from code.sf.sf_stv import ImplSTV
 from code.sf.sf_irv import ImplIRV
 from code.sf.sf_plurality import ImplPlurality
+from code.sf.sf_plurality_at_large import ImplPluralityAtLarge
 from code.pref_matrix_plot import PrefPlotter
 
 # 'ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki'
@@ -19,6 +20,7 @@ def executeExp():
     pc = ImplSTV(pref_plotter.raw_pref)
     pc = ImplIRV(pref_plotter.raw_pref)
     pc = ImplPlurality(pref_plotter.raw_pref)
+    pc = ImplPluralityAtLarge(pref_plotter.raw_pref)
 
 if __name__ == '__main__':
     from code.prefreaders import SushiPref
