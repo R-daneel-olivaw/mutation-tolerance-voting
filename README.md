@@ -14,11 +14,11 @@ The below will need to be installed in the host machine to compile
 
 ### TODO
 
-- [x] Read preferences from preflib file
-- [x] Process preferences
+- [x] Read preferences from preflib file 
+- [x] Process preferences 
 - [x] Plot graph summarizing preferences
 - [x] Implement STV social function
-- [x] Implement IRV social function 
+- [x] Implement IRV social function
 - [x] Implement Plurality social function
 - [ ] Implement noise models
 - [ ] Compare noisy results with noiseless results 
