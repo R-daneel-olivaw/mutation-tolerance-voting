@@ -19,16 +19,16 @@ class PrefSFConverter(object):
     def convert(self):
         df = self.raw_pref.getDf()
         
-        df = df.replace([1, 2, 3, 4, 5, 6, 7, 8, 9, 0], ['ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki']) 
+        df = df.replace([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], ['ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki']) 
         
-        #print(df)
+        # print(df)
         
         df['concatenated'] = df['01'] + ',' + df['02'] + ',' + df['03'] + ',' + df['04'] + ',' + df['05'] + ',' + df['06'] + ',' + df['07'] + ',' + df['08'] + ',' + df['09'] + ',' + df['10']
         uq_pref = df['concatenated'].value_counts()
         
         input_pr = []
         for index, value in uq_pref.iteritems():
-            #print(index,value)
+            # print(index,value)
             
             i_p = {}
             
@@ -40,19 +40,19 @@ class PrefSFConverter(object):
             
             input_pr.append(i_p)
             
-        #print(input_pr)
+        # print(input_pr)
         
         return input_pr
     
     def convert_single_vote(self):
         
         df = self.raw_pref.getDf()  
-        df = df.replace([1, 2, 3, 4, 5, 6, 7, 8, 9, 0], ['ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki'])
+        df = df.replace([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], ['ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki'])
         
         uq_pref = df['01'].value_counts()
         input_pr = []
         for index, value in uq_pref.iteritems():
-            #print(index,value)
+            # print(index,value)
             
             i_p = {}
             

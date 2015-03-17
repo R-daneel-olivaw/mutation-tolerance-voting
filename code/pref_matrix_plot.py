@@ -14,7 +14,7 @@ class PrefPlotter(object):
     '''
 
     def load_pref(self):
-        self.raw_pref = SushiPref('D:\Lectures\Winter2015\CS886\Project\sushi3_preflib\sushi3_preflib\ED-00015-00000001.soc')
+        self.raw_pref = SushiPref( self.pref_path)
         self.raw_pref.loadUp()
     
         self.pref_util = SushiPrefUtil(self.raw_pref)
