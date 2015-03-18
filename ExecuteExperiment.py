@@ -3,6 +3,7 @@ Created on Mar 5, 2015
 
 @author: Akshat
 '''
+# coding: utf-8
 import pandas as pd
 import matplotlib.pyplot as plt
 from pandas.core.frame import DataFrame
