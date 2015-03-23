@@ -20,14 +20,27 @@ class PrefPlotter(object):
     
         self.pref_util = SushiPrefUtil(self.raw_pref)
         self.pref_matrix = self.pref_util.gen_pref_matrix() 
+        
+    
+    def load_pref_o(self):
+
+        self.raw_pref = SushiPref( self.pref_path)
+        self.raw_pref.loadUp_2()
+    
+        self.pref_util = SushiPrefUtil(self.raw_pref)
+        self.pref_matrix = self.pref_util.gen_pref_matrix() 
     
     
-    def __init__(self, pref_path):
+    def __init__(self, pref_path, is_noisy=False):
         '''
         Constructor
         '''
-        self.pref_path = pref_path
-        self.load_pref()
+        if is_noisy:
+            self.pref_path = pref_path
+            self.load_pref_o()
+        else:
+            self.pref_path = pref_path
+            self.load_pref()
         
     
     def print_matrix(self):
