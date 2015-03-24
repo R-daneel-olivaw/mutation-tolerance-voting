@@ -60,8 +60,8 @@ class MutationRandom(object):
                 
                 del lstMutate[:]
                 
-            self.raw_pref.getDf().to_csv(OutputFilePath, encoding='utf-8', index=True)                
-
+#            self.raw_pref.getDf().to_csv(OutputFilePath, encoding='utf-8', index=True)                
+            self.WriteToDirectory(OutputFilePath, Percentage, MutateType)    
                 
         else:
             for iRow in range(0, len(lstRandomRaw)):
@@ -81,12 +81,20 @@ class MutationRandom(object):
                 
                 del lstMutate[:]            
                 
-            self.raw_pref.getDf().to_csv(OutputFilePath, encoding='utf-8', index=True)                    
-        
-    def PrintMatrix(self):
+#            self.raw_pref.getDf().to_csv(OutputFilePath, encoding='utf-8', index=True)                    
+            self.WriteToDirectory(OutputFilePath, Percentage, MutateType)    
+    # Mutation Percentage should be < 1
+    #Mutate votes on extremes when MutateType == 0, else muatate votes in the middle
+    #Extremes means the first two and the last two
+    #votes in the middle means the rest six  
+    
+    def WriteToDirectory(self, OutPath, MutationPercentage, MutationType):
+        OutputDirectory = OutPath + "/Mutation" + "_" + str(MutationPercentage) + "_" + str(MutationType) + ".csv"
+        self.raw_pref.getDf().to_csv(OutputDirectory, encoding='utf-8', index=True)                    
+           
+    def GetResult(self, MutationPercentage, MutationType, OutputDirectory):
 
-        filePath = "/Users/PengPeng/Desktop/Mutated1.csv"
-        self.GenerateRandom(0.001, 0, filePath)
+        self.GenerateRandom(MutationPercentage, MutationType, OutputDirectory)
 
         
 
