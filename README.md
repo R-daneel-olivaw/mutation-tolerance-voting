@@ -21,5 +21,5 @@ The below will need to be installed in the host machine to compile
 - [x] Implement IRV social function single winner STV
 - [x] Implement Plurality social function
 - [x] Implement Plurality at large social function multiple winner Plurality
-- [ ] Implement noise models
+- [x] Implement noise models
 - [ ] Compare noisy results with noiseless results 
