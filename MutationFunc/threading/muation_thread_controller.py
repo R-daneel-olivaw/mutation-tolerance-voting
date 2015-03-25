@@ -11,11 +11,18 @@ from code.sf.sf_plurality import ImplPlurality
 from code.sf.sf_plurality_at_large import ImplPluralityAtLarge
 from code.sf.sf_stv import ImplSTV
 from code.result_agg import ResultAggregator
+from threading import Thread
+from queue import Queue
 
 class MuationThreadController(object):
     '''
     classdocs
     '''
+    def fork_mutate_index_extreme_degree(self, degree):
+        
+        p8peng_out = PrefMutationRandom.MutationRandom(self.pref_path).GetResult(degree, 0, self.output_directry)
+        noisyPP = PrefPlotter(p8peng_out, True)    
+        self.compute_noisy_results(noisyPP, self.path_leaf(p8peng_out))
     
     def compute_noisy_results(self, noisyPP, pickle_name):
     
@@ -37,14 +44,17 @@ class MuationThreadController(object):
         '''
         self.output_directry = output_directry
         self.pref_path = pref_path
-    
+        
     def fork_mutate_index_extreme(self, degree_list):
         
+        worker_list = []
         for degree in degree_list:
-            self.fork_mutate_index_extreme_degree(degree)
-    
-    def fork_mutate_index_extreme_degree(self, degree):
+            print('WORKING ON ',degree)
+            worker = Thread(target=self.fork_mutate_index_extreme_degree, args=(degree,))
+            worker.setDaemon(True)
+            worker.start()
+            
+            worker_list.append(worker)
         
-        p8peng_out = PrefMutationRandom.MutationRandom(self.pref_path).GetResult(degree, 0, self.output_directry)
-        noisyPP = PrefPlotter(p8peng_out, True)    
-        self.compute_noisy_results(noisyPP, self.path_leaf(p8peng_out))
+        return worker_list
+    

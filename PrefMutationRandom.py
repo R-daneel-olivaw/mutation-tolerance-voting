@@ -38,7 +38,7 @@ class MutationRandom(object):
         #Extremes means the first two and the last two
         #votes in the middle means the rest six
         
-        print(lstRandomRaw)
+#        print(lstRandomRaw)
         
         lstMutateIndexExtreme = [0, 1, 8, 9]
         lstMutateIndexMid = [2, 3, 4, 5, 6, 7]
@@ -46,17 +46,17 @@ class MutationRandom(object):
         
         if MutateType == 0:
             for iRow in range(0, len(lstRandomRaw)):
-                print(self.raw_pref.getDf().iloc[lstRandomRaw[iRow]])
+#                 print(self.raw_pref.getDf().iloc[lstRandomRaw[iRow]])
                 for iElement in range(0, 4):
                     lstMutate.append(self.raw_pref.getDf().iloc[lstRandomRaw[iRow], lstMutateIndexExtreme[iElement]])
-                print(lstMutate)
+#                 print(lstMutate)
                 lstMutated = sorted(lstMutate, key = lambda k: random.random())
-                print(lstMutated)
+#                print(lstMutated)
                 self.raw_pref.getDf().iloc[lstRandomRaw[iRow], 0] = lstMutated[0];
                 self.raw_pref.getDf().iloc[lstRandomRaw[iRow], 1] = lstMutated[1];
                 self.raw_pref.getDf().iloc[lstRandomRaw[iRow], 8] = lstMutated[2];
                 self.raw_pref.getDf().iloc[lstRandomRaw[iRow], 9] = lstMutated[3];
-                print(self.raw_pref.getDf().iloc[lstRandomRaw[iRow]])
+#                print(self.raw_pref.getDf().iloc[lstRandomRaw[iRow]])
                 
                 del lstMutate[:]
                 
@@ -65,19 +65,19 @@ class MutationRandom(object):
                 
         else:
             for iRow in range(0, len(lstRandomRaw)):
-                print(self.raw_pref.getDf().iloc[lstRandomRaw[iRow]])
+#                 print(self.raw_pref.getDf().iloc[lstRandomRaw[iRow]])
                 for iElement in range(0, 6):
                     lstMutate.append(self.raw_pref.getDf().iloc[lstRandomRaw[iRow], lstMutateIndexMid[iElement]])
-                print(lstMutate)
+#                print(lstMutate)
                 lstMutated = sorted(lstMutate, key = lambda k: random.random())
-                print(lstMutated)
+#                print(lstMutated)
                 self.raw_pref.getDf().iloc[lstRandomRaw[iRow], 2] = lstMutated[0];
                 self.raw_pref.getDf().iloc[lstRandomRaw[iRow], 3] = lstMutated[1];
                 self.raw_pref.getDf().iloc[lstRandomRaw[iRow], 4] = lstMutated[2];
                 self.raw_pref.getDf().iloc[lstRandomRaw[iRow], 5] = lstMutated[3];
                 self.raw_pref.getDf().iloc[lstRandomRaw[iRow], 6] = lstMutated[4];
                 self.raw_pref.getDf().iloc[lstRandomRaw[iRow], 7] = lstMutated[5];
-                print(self.raw_pref.getDf().iloc[lstRandomRaw[iRow]])
+#                print(self.raw_pref.getDf().iloc[lstRandomRaw[iRow]])
                 
                 del lstMutate[:]            
                 
