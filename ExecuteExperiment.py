@@ -29,13 +29,8 @@ def compute_noisy_results(noisyPP, pickle_name):
     r_agg = ResultAggregator(output_directry, pickle_name + '.pik')
     r_agg.pickle_results(stv_result, irv_result, plurality_result, plurality_large_result)
 
-# 'ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki'
-def executeExp():
 
-    pref_plotter = PrefPlotter('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc')
-    # pref_plotter.plotGraph()
-    # pref_plotter.print_matrix()
-    
+def compute_no_noise_results(pref_plotter):
     
     stv_result = ImplSTV(pref_plotter.raw_pref,).run_stv()    
     irv_result = ImplIRV(pref_plotter.raw_pref).run_irv()
@@ -49,11 +44,42 @@ def executeExp():
     read_pickle_sample = r_agg.read_pickle_sample(output_directry, 'no-noise.pik')
     print(read_pickle_sample)
     # READ PICKLE SAMPLE
+
+# 'ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki'
+def executeExp():
     
-    p8peng_out = PrefMutationRandom.MutationRandom('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc').GetResult(0.5, 0, output_directry)
-    noisyPP = PrefPlotter(p8peng_out, True)
+    pref_plotter = PrefPlotter('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc')
+    # pref_plotter.plotGraph()
+    # pref_plotter.print_matrix()
     
+    compute_no_noise_results(pref_plotter)
+    
+    print('WORKING ON 0.1')
+    p8peng_out = PrefMutationRandom.MutationRandom('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc').GetResult(0.1, 0, output_directry)
+    noisyPP = PrefPlotter(p8peng_out, True)    
     compute_noisy_results(noisyPP, path_leaf(p8peng_out))
+    
+    print('WORKING ON 0.2')
+    p8peng_out = PrefMutationRandom.MutationRandom('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc').GetResult(0.2, 0, output_directry)
+    noisyPP = PrefPlotter(p8peng_out, True)    
+    compute_noisy_results(noisyPP, path_leaf(p8peng_out))
+    
+    print('WORKING ON 0.3')
+    p8peng_out = PrefMutationRandom.MutationRandom('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc').GetResult(0.3, 0, output_directry)
+    noisyPP = PrefPlotter(p8peng_out, True)    
+    compute_noisy_results(noisyPP, path_leaf(p8peng_out))
+    
+    print('WORKING ON 0.4')
+    p8peng_out = PrefMutationRandom.MutationRandom('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc').GetResult(0.4, 0, output_directry)
+    noisyPP = PrefPlotter(p8peng_out, True)    
+    compute_noisy_results(noisyPP, path_leaf(p8peng_out))
+    
+    print('WORKING ON 0.5')
+    p8peng_out = PrefMutationRandom.MutationRandom('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc').GetResult(0.5, 0, output_directry)
+    noisyPP = PrefPlotter(p8peng_out, True)    
+    compute_noisy_results(noisyPP, path_leaf(p8peng_out))
+    
+    print('**********DONE**********')
      
     # print(pref_plotter.raw_pref.getDf())
     
