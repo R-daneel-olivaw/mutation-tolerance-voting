@@ -11,8 +11,23 @@ from code.sf.sf_plurality import ImplPlurality
 from code.sf.sf_plurality_at_large import ImplPluralityAtLarge
 from code.sf.sf_stv import ImplSTV
 from code.result_agg import ResultAggregator
+import ntpath
 
 output_directry = 'C:/Users/Akshat/git/mutation-tolerance-voting/output'
+
+def path_leaf(path):
+    head, tail = ntpath.split(path)
+    return tail or ntpath.basename(head)
+
+def compute_noisy_results(noisyPP, pickle_name):
+    
+    stv_result = ImplSTV(noisyPP.raw_pref,).run_stv()    
+    irv_result = ImplIRV(noisyPP.raw_pref).run_irv()
+    plurality_result = ImplPlurality(noisyPP.raw_pref).run_plurality()
+    plurality_large_result = ImplPluralityAtLarge(noisyPP.raw_pref).run_plurality_at_large()
+    
+    r_agg = ResultAggregator(output_directry, pickle_name + '.pik')
+    r_agg.pickle_results(stv_result, irv_result, plurality_result, plurality_large_result)
 
 # 'ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki'
 def executeExp():
@@ -35,8 +50,10 @@ def executeExp():
     print(read_pickle_sample)
     # READ PICKLE SAMPLE
     
-    p8peng_out = PrefMutationRandom.MutationRandom('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc').GetResult(0.01, 0, 'C:/Users/Akshat/git/mutation-tolerance-voting/output')
-    PrefPlotter(p8peng_out, True).plotGraph()
+    p8peng_out = PrefMutationRandom.MutationRandom('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc').GetResult(0.5, 0, output_directry)
+    noisyPP = PrefPlotter(p8peng_out, True)
+    
+    compute_noisy_results(noisyPP, path_leaf(p8peng_out))
      
     # print(pref_plotter.raw_pref.getDf())
     
