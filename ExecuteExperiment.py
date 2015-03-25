@@ -18,8 +18,8 @@ output_directry = 'C:/Users/Akshat/git/mutation-tolerance-voting/output'
 def executeExp():
 
     pref_plotter = PrefPlotter('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc')
-    #pref_plotter.plotGraph()
-    #pref_plotter.print_matrix()
+    # pref_plotter.plotGraph()
+    # pref_plotter.print_matrix()
     
     
     stv_result = ImplSTV(pref_plotter.raw_pref,).run_stv()    
@@ -35,10 +35,10 @@ def executeExp():
     print(read_pickle_sample)
     # READ PICKLE SAMPLE
     
-#     PrefMutationRandom.MutationRandom('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc').PrintMatrix()
-#     PrefPlotter('C:/Users/Akshat/git/mutation-tolerance-voting/output/o1.soc',True).plotGraph()
+    PrefMutationRandom.MutationRandom('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc').GetResult(0.3, 0, 'C:/Users/Akshat/git/mutation-tolerance-voting/output')
+    PrefPlotter('C:/Users/Akshat/git/mutation-tolerance-voting/output/o1.soc', True).plotGraph()
      
-    #print(pref_plotter.raw_pref.getDf())
+    # print(pref_plotter.raw_pref.getDf())
     
 #     df_copy = pref_plotter.raw_pref.getDf().copy(True)
 #     for index, row in df_copy.iterrows():
