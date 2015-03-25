@@ -82,7 +82,7 @@ class MutationRandom(object):
                 del lstMutate[:]            
                 
 #            self.raw_pref.getDf().to_csv(OutputFilePath, encoding='utf-8', index=True)                    
-            self.WriteToDirectory(OutputFilePath, Percentage, MutateType)    
+        return self.WriteToDirectory(OutputFilePath, Percentage, MutateType)    
     # Mutation Percentage should be < 1
     #Mutate votes on extremes when MutateType == 0, else muatate votes in the middle
     #Extremes means the first two and the last two
@@ -90,10 +90,19 @@ class MutationRandom(object):
     
     def WriteToDirectory(self, OutPath, MutationPercentage, MutationType):
         OutputDirectory = OutPath + "/Mutation" + "_" + str(MutationPercentage) + "_" + str(MutationType) + ".csv"
-        self.raw_pref.getDf().to_csv(OutputDirectory, encoding='utf-8', index=True)                    
+        self.raw_pref.getDf().to_csv(OutputDirectory, encoding='utf-8', index=True)  
+        
+        print(OutputDirectory)
+        
+        return OutputDirectory                  
            
     def GetResult(self, MutationPercentage, MutationType, OutputDirectory):
-        self.GenerateRandom(MutationPercentage, MutationType, OutputDirectory)
+        
+        OutputDirectory = self.GenerateRandom(MutationPercentage, MutationType, OutputDirectory)
+        
+        print(OutputDirectory)
+        
+        return OutputDirectory
 
         
 
