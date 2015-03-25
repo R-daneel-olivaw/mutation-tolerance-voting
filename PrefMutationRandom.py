@@ -92,15 +92,11 @@ class MutationRandom(object):
         OutputDirectory = OutPath + "/Mutation" + "_" + str(MutationPercentage) + "_" + str(MutationType) + ".csv"
         self.raw_pref.getDf().to_csv(OutputDirectory, encoding='utf-8', index=True)  
         
-        print(OutputDirectory)
-        
         return OutputDirectory                  
            
     def GetResult(self, MutationPercentage, MutationType, OutputDirectory):
         
         OutputDirectory = self.GenerateRandom(MutationPercentage, MutationType, OutputDirectory)
-        
-        print(OutputDirectory)
         
         return OutputDirectory
 

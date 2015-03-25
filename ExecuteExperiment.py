@@ -36,7 +36,6 @@ def executeExp():
     # READ PICKLE SAMPLE
     
     p8peng_out = PrefMutationRandom.MutationRandom('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc').GetResult(0.01, 0, 'C:/Users/Akshat/git/mutation-tolerance-voting/output')
-    print(p8peng_out)
     PrefPlotter(p8peng_out, True).plotGraph()
      
     # print(pref_plotter.raw_pref.getDf())
