@@ -85,8 +85,8 @@ class MutationRandom(object):
         
     def PrintMatrix(self):
 
-        filePath = "D:\Lectures\Winter2015\CS886\Project\o1.soc"
-        self.GenerateRandom(0.001, 0, filePath)
+        filePath = "C:/Users/Akshat/git/mutation-tolerance-voting/output/o1.soc"
+        self.GenerateRandom(0.5, 1, filePath)
 
         
 
