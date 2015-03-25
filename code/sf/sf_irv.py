@@ -36,15 +36,15 @@ class ImplIRV(object):
 #         output = STV(input_pr, required_winners=2).as_dict()
 #         print(output)
 
-        self.run_irv(self.processed_pref)
+    def run_irv(self):
         
-    def run_irv(self, prefrences):
+        output = IRV(self.processed_pref).as_dict()
+#         print('##IRV Winners##')
+#         #print(output)
+#         print(output['winner'])
+#         print(output['rounds'])
+#         print('##IRV Winners##')
+#         print()
         
-        output = IRV(prefrences).as_dict()
-        print('##IRV Winners##')
-        #print(output)
-        print(output['winner'])
-        print(output['rounds'])
-        print('##IRV Winners##')
-        print()
+        return output
         

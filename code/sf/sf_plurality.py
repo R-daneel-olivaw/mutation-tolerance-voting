@@ -18,15 +18,16 @@ class ImplPlurality(object):
         '''
         
         self.processed_pref = PrefSFConverter(raw_pref).convert_single_vote()
-        self.run_plurality_at_large()
     
-    def run_plurality_at_large(self):
+    def run_plurality(self):
         
         output = Plurality(self.processed_pref).as_dict()
-        print('##Plurality Winners##')
-        #print(output)
-        print(output['winner'])
-        print(output['tallies'])
-        print('##Plurality Winners##')
-        print()
+#         print('##Plurality Winners##')
+#         #print(output)
+#         print(output['winner'])
+#         print(output['tallies'])
+#         print('##Plurality Winners##')
+#         print()
+        
+        return output
         

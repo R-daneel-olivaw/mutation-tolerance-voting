@@ -28,6 +28,14 @@ class SushiPref(object):
         del localdf['#']
         
         self.df = localdf
+        
+    def loadUp_2(self):
+        
+        localdf = pd.read_csv(self.csv, skiprows=1, names=['#', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10'])
+        
+        del localdf['#']
+        
+        self.df = localdf
     
     def getDf(self):
         
