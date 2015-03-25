@@ -4,7 +4,6 @@ Created on Mar 5, 2015
 @author: Akshat
 '''
 from MutationFunc.RandomSwap import Mutation
-import PrefMutationRandom
 from code.pref_matrix_plot import PrefPlotter
 from code.sf.sf_irv import ImplIRV
 from code.sf.sf_plurality import ImplPlurality
@@ -60,31 +59,6 @@ def executeExp():
     
     for worker in worker_list:
         worker.join() 
-    
-#     print('WORKING ON 0.1')
-#     p8peng_out = PrefMutationRandom.MutationRandom('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc').GetResult(0.1, 0, output_directry)
-#     noisyPP = PrefPlotter(p8peng_out, True)    
-#     compute_noisy_results(noisyPP, path_leaf(p8peng_out))
-#     
-#     print('WORKING ON 0.2')
-#     p8peng_out = PrefMutationRandom.MutationRandom('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc').GetResult(0.2, 0, output_directry)
-#     noisyPP = PrefPlotter(p8peng_out, True)    
-#     compute_noisy_results(noisyPP, path_leaf(p8peng_out))
-#     
-#     print('WORKING ON 0.3')
-#     p8peng_out = PrefMutationRandom.MutationRandom('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc').GetResult(0.3, 0, output_directry)
-#     noisyPP = PrefPlotter(p8peng_out, True)    
-#     compute_noisy_results(noisyPP, path_leaf(p8peng_out))
-#     
-#     print('WORKING ON 0.4')
-#     p8peng_out = PrefMutationRandom.MutationRandom('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc').GetResult(0.4, 0, output_directry)
-#     noisyPP = PrefPlotter(p8peng_out, True)    
-#     compute_noisy_results(noisyPP, path_leaf(p8peng_out))
-#     
-#     print('WORKING ON 0.5')
-#     p8peng_out = PrefMutationRandom.MutationRandom('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc').GetResult(0.5, 0, output_directry)
-#     noisyPP = PrefPlotter(p8peng_out, True)    
-#     compute_noisy_results(noisyPP, path_leaf(p8peng_out))
     
     print('**********DONE**********')
      
