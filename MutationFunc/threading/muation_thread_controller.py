@@ -23,6 +23,8 @@ class MuationThreadController(object):
         p8peng_out = PrefMutationRandom.MutationRandom(self.pref_path).GetResult(degree, 0, self.output_directry)
         noisyPP = PrefPlotter(p8peng_out, True)    
         self.compute_noisy_results(noisyPP, self.path_leaf(p8peng_out))
+        
+        print('Completed ',degree)
     
     def compute_noisy_results(self, noisyPP, pickle_name):
     
@@ -51,7 +53,7 @@ class MuationThreadController(object):
         for degree in degree_list:
             print('WORKING ON ',degree)
             worker = Thread(target=self.fork_mutate_index_extreme_degree, args=(degree,))
-            worker.setDaemon(True)
+            #worker.setDaemon(True)
             worker.start()
             
             worker_list.append(worker)

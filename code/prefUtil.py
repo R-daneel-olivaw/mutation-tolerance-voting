@@ -41,7 +41,6 @@ class SushiPrefUtil(object):
         fullPref = DataFrame(dict(r1=rank1, r2=rank2, r3=rank3, r4=rank4, r5=rank5, r6=rank6, r7=rank7, r8=rank8, r9=rank9, r10=rank10))
         fullPref.index.name = 'SushiName'
         
-        print('RESULTS...')
         fullPref = fullPref.transpose()
         
         '''

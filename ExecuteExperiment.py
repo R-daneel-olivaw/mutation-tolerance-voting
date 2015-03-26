@@ -43,6 +43,14 @@ def compute_no_noise_results(pref_plotter):
     # READ PICKLE SAMPLE
     read_pickle_sample = r_agg.read_pickle_sample(output_directry, 'no-noise.pik')
     print(read_pickle_sample)
+    
+    print(read_pickle_sample['STV']['winners'])
+    
+    temp_a=[]
+    for i in read_pickle_sample['STV']['winners']:
+        temp_a.append(i)
+        
+    print(temp_a[0])
     # READ PICKLE SAMPLE
 
 # 'ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki'
