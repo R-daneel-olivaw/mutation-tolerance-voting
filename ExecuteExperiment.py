@@ -15,7 +15,7 @@ from MutationFunc.RandomSwap import Mutation
 def executeExp():
 
     pref_plotter = PrefPlotter('C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc')
-    #pref_plotter.plotGraph()
+    pref_plotter.plotGraph()
     pref_plotter.print_matrix()
     
     pc = ImplSTV(pref_plotter.raw_pref)
@@ -23,11 +23,20 @@ def executeExp():
     pc = ImplPlurality(pref_plotter.raw_pref)
     pc = ImplPluralityAtLarge(pref_plotter.raw_pref)
     
+#     pu = SushiPrefUtil(pr)
+#     pref_matrix = pu.gen_pref_matrix() 
+#      
+#      
+#     print(pref_matrix)
+#      
+#     # For Graph Plot
+#     pref_matrix.plot()
+#     plt.show()
     #print(pref_plotter.raw_pref.getDf())
     for index, row in pref_plotter.raw_pref.getDf().iterrows():
         randomswap=Mutation(row,0.5)
         randomswap.normalNoise()
-        print(row)
-    
+#         print(row)
+    pref_plotter.plotGraph()
 if __name__ == '__main__':
     executeExp()
