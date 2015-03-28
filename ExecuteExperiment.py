@@ -22,7 +22,7 @@ def executeExp():
     pc = ImplIRV(pref_plotter.raw_pref)
     pc = ImplPlurality(pref_plotter.raw_pref)
     pc = ImplPluralityAtLarge(pref_plotter.raw_pref)
-    
+    OutputFilePath="C:/Users/pengjie137/Desktop/Mutated1.csv"
 #     pu = SushiPrefUtil(pr)
 #     pref_matrix = pu.gen_pref_matrix() 
 #      
@@ -37,6 +37,7 @@ def executeExp():
         randomswap=Mutation(row,0.5)
         randomswap.normalNoise()
 #         print(row)
+    pref_plotter.raw_pref.getDf().to_csv(OutputFilePath, encoding='utf-8', index=True)
     pref_plotter.plotGraph()
 if __name__ == '__main__':
     executeExp()
