@@ -7,6 +7,8 @@ import random
 from datetime import datetime
 import time
 import math
+from code.prefreaders import SushiPref
+from code.prefUtil import SushiPrefUtil
 
 class Mutation(object):
     '''
@@ -21,6 +23,11 @@ class Mutation(object):
         '''
         self.entry=entry;
         self.degree=degree
+        
+    def LoadPref(self):
+        
+        self.raw_pref = SushiPref(self.prefpath)
+        self.raw_pref.loadUp()
     
     def randomSwap(self):
         random.seed(datetime.now())
