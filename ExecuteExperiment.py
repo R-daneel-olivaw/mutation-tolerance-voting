@@ -46,7 +46,7 @@ def compute_no_noise_results(pref_plotter):
     
     print(read_pickle_sample['STV']['winners'])
     
-    temp_a=[]
+    temp_a = []
     for i in read_pickle_sample['STV']['winners']:
         temp_a.append(i)
         
@@ -62,8 +62,12 @@ def executeExp():
     
     compute_no_noise_results(pref_plotter)
     
+    worker_list = []
+    
     m_controller = MuationThreadController('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc', output_directry)
-    worker_list = m_controller.fork_mutate_index_extreme([0.1, 0.2, 0.3, 0.4, 0.5])
+    
+    m_controller.fork_mutate_index_extreme(worker_list, [0.1])
+    #m_controller.fork_mutate_total(worker_list, [0.5])
     
     for worker in worker_list:
         worker.join() 
@@ -83,4 +87,3 @@ def executeExp():
     
 if __name__ == '__main__':
     executeExp()
-

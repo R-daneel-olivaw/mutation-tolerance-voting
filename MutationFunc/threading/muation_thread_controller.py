@@ -13,6 +13,7 @@ from code.sf.sf_stv import ImplSTV
 from code.result_agg import ResultAggregator
 from threading import Thread
 from queue import Queue
+from MutationFunc.RandomSwap import Mutation
 
 class MuationThreadController(object):
     '''
@@ -47,9 +48,8 @@ class MuationThreadController(object):
         self.output_directry = output_directry
         self.pref_path = pref_path
         
-    def fork_mutate_index_extreme(self, degree_list):
+    def fork_mutate_index_extreme(self,worker_list, degree_list):
         
-        worker_list = []
         for degree in degree_list:
             print('WORKING ON ',degree)
             worker = Thread(target=self.fork_mutate_index_extreme_degree, args=(degree,))
@@ -57,6 +57,27 @@ class MuationThreadController(object):
             worker.start()
             
             worker_list.append(worker)
+            
+    def fork_mutate_total_degree(self, degree):
         
-        return worker_list
+        print('WORKING ON TOTAL degree :', degree)
+        
+        randomswap=Mutation(degree,self.pref_path, self.output_directry)
+        o_path = randomswap.mutate_total()
+        
+        print(o_path)
+        
+        noisyPP = PrefPlotter(o_path, True)    
+        self.compute_noisy_results(noisyPP, self.path_leaf(o_path))
+        
+        print('Completed total degree :',degree)
     
+    def fork_mutate_total(self, worker_list,degree_list):
+        
+        for degree in degree_list:
+        
+            worker = Thread(target=self.fork_mutate_total_degree, args=(degree,))
+            
+            worker.start()
+            
+            worker_list.append(worker)
