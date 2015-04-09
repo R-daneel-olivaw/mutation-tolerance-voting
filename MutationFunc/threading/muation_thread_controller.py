@@ -12,7 +12,6 @@ from code.sf.sf_plurality_at_large import ImplPluralityAtLarge
 from code.sf.sf_stv import ImplSTV
 from code.result_agg import ResultAggregator
 from threading import Thread
-from queue import Queue
 from MutationFunc.RandomSwap import Mutation
 
 class MuationThreadController(object):
@@ -25,7 +24,7 @@ class MuationThreadController(object):
         noisyPP = PrefPlotter(p8peng_out, True)    
         self.compute_noisy_results(noisyPP, self.path_leaf(p8peng_out))
         
-        print('Completed ',degree)
+        print('Completed ', degree)
     
     def compute_noisy_results(self, noisyPP, pickle_name):
     
@@ -41,19 +40,29 @@ class MuationThreadController(object):
         head, tail = ntpath.split(path)
         return tail or ntpath.basename(head)
 
-    def __init__(self, pref_path, output_directry):
+    def __init__(self, config, pref_path, output_directry):
         '''
         Constructor
         '''
-        self.output_directry = output_directry
+        self.config = config
         self.pref_path = pref_path
+        self.output_directry = output_directry
         
-    def fork_mutate_index_extreme(self,worker_list, degree_list):
+
+    def get_config_value(self, config_key):
+        value = self.config[config_key]
+        return value
+    
+    
+    def fork_mutate_index_extreme(self, worker_list):
+        
+        degree_list = self.get_config_value('extremes_noise_level_list')
+        degree_list = map(float, degree_list.split(','))
         
         for degree in degree_list:
-            print('WORKING ON ',degree)
+            print('WORKING ON ', degree)
             worker = Thread(target=self.fork_mutate_index_extreme_degree, args=(degree,))
-            #worker.setDaemon(True)
+            # worker.setDaemon(True)
             worker.start()
             
             worker_list.append(worker)
@@ -62,7 +71,7 @@ class MuationThreadController(object):
         
         print('WORKING ON TOTAL degree :', degree)
         
-        randomswap=Mutation(degree,self.pref_path, self.output_directry)
+        randomswap = Mutation(degree, self.pref_path, self.output_directry)
         o_path = randomswap.mutate_total()
         
         print(o_path)
@@ -70,9 +79,9 @@ class MuationThreadController(object):
         noisyPP = PrefPlotter(o_path, True)    
         self.compute_noisy_results(noisyPP, self.path_leaf(o_path))
         
-        print('Completed total degree :',degree)
+        print('Completed total degree :', degree)
     
-    def fork_mutate_total(self, worker_list,degree_list):
+    def fork_mutate_total(self, worker_list, degree_list):
         
         for degree in degree_list:
         
