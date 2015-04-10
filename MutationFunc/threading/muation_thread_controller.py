@@ -20,7 +20,10 @@ class MuationThreadController(object):
     '''
     def fork_mutate_index_extreme_degree(self, degree):
         
-        p8peng_out = PrefMutationRandom.MutationRandom(self.pref_path).GetResult(degree, 0, self.output_directry)
+        path = None            
+        path = self.output_directry 
+        
+        p8peng_out = PrefMutationRandom.MutationRandom(self.pref_path).GetResult(degree, 0, path)
         noisyPP = PrefPlotter(p8peng_out, True)    
         self.compute_noisy_results(noisyPP, self.path_leaf(p8peng_out))
         
@@ -33,20 +36,21 @@ class MuationThreadController(object):
         plurality_result = ImplPlurality(noisyPP.raw_pref).run_plurality()
         plurality_large_result = ImplPluralityAtLarge(noisyPP.raw_pref).run_plurality_at_large()
         
-        r_agg = ResultAggregator(self.output_directry, pickle_name + '.pik')
+        r_agg = ResultAggregator(self.output_directry, pickle_name+ str(self.index) + '.pik')
         r_agg.pickle_results(stv_result, irv_result, plurality_result, plurality_large_result)
         
     def path_leaf(self, path):
         head, tail = ntpath.split(path)
         return tail or ntpath.basename(head)
 
-    def __init__(self, config, pref_path, output_directry):
+    def __init__(self, config, pref_path, output_directry, index=None):
         '''
         Constructor
         '''
         self.config = config
         self.pref_path = pref_path
         self.output_directry = output_directry
+        self.index = index
         
 
     def get_config_value(self, config_key):

@@ -19,13 +19,18 @@ input_file_path = None
 mutate_index_extreme = [0.1]
 ini_path = 'experiment_config.ini'
 
-def parse_config(ini_path):
-    
+def get_config_key(ini_key, ini_path):
     config = configparser.ConfigParser()
     config.sections()
     config.read(ini_path)
     
-    experiment_config = config['sf']
+    experiment_config = config[ini_key]
+    
+    return experiment_config
+
+def parse_config(ini_path):
+    
+    experiment_config = get_config_key('sf', ini_path)
     
     global output_directry
     output_directry = experiment_config['output_directry']
@@ -72,18 +77,8 @@ def compute_no_noise_results(pref_plotter):
     # READ PICKLE SAMPLE
 
 
-def get_config_key(ini_key):
-    config = configparser.ConfigParser()
-    config.sections()
-    config.read(ini_path)
-    
-    experiment_config = config[ini_key]
-    
-    return experiment_config
-
-
 # 'ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki'
-def executeExp():
+def executeExp(index=None):
     
     parse_config(ini_path)
     print('output_directry - ', output_directry)
@@ -97,8 +92,8 @@ def executeExp():
     
     worker_list = []
     
-    noise_config = get_config_key('noise')
-    m_controller = MuationThreadController(noise_config, input_file_path, output_directry)
+    noise_config = get_config_key('noise',ini_path)
+    m_controller = MuationThreadController(noise_config, input_file_path, output_directry, index)
     
     m_controller.fork_mutate_index_extreme(worker_list)
     # m_controller.fork_mutate_total(worker_list, [0.5])
