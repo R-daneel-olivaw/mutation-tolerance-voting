@@ -5,26 +5,30 @@ Created on Mar 25, 2015
 '''
 
 from code.result_agg import ResultAggregator
-from posix import lstat
 import scipy.stats as stats
+import pickle
 
 class ResultMeasurement(object):
     '''
     classdocs
     '''
+    
+    def read_pickle_path(self, pickle_path):
+        
+        results = pickle.load(open(pickle_path, "rb"))
+        
+        return results
 
 
-    def __init__(self, PickleDirectory, NoisePickleName, NoNoisePickleName):
+    def __init__(self, NoisePicklePath, NoNoisePicklePath):
         '''
         Constructor
         '''
-           
-        self.pickleDirectory = PickleDirectory
-        self.noisePickleName = NoisePickleName
-        self.noNoisePickleName = NoNoisePickleName
+        self.NoisePicklePath = NoisePicklePath
+        self.NoNoisePicklePath = NoNoisePicklePath
         
-        self.noisePickleInstance = ResultAggregator(self.pickleDirectory, self.noisePickleName).read_pickle_sample(self.pickleDirectory, self.noisePickleName)
-        self.noNoisePickleInstance = ResultAggregator(self.pickleDirectory, self.noNoisePickleName).read_pickle_sample(self.pickleDirectory, self.noNoisePickleName)
+        self.noisePickleInstance = self.read_pickle_path(self.NoisePicklePath)
+        self.noNoisePickleInstance = self.read_pickle_path(self.NoNoisePicklePath)
          
 #         print(self.noisePickleInstance["PLURALITY_AT_LARGE"]["winners"])
     

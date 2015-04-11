@@ -32,6 +32,8 @@ class ResultAggregator(object):
         path = self.output_directry + '/' + self.file_name
             
         pickle.dump(output, open(path, "wb"))
+        
+        return path
     
     def read_pickle_sample(self, pickle_directory, pickle_name):
         

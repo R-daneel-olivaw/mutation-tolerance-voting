@@ -61,20 +61,9 @@ def compute_no_noise_results(pref_plotter):
     plurality_large_result = ImplPluralityAtLarge(pref_plotter.raw_pref).run_plurality_at_large()
     
     r_agg = ResultAggregator(output_directry, 'no-noise.pik')
-    r_agg.pickle_results(stv_result, irv_result, plurality_result, plurality_large_result)
+    no_noise_pickle_path = r_agg.pickle_results(stv_result, irv_result, plurality_result, plurality_large_result)
     
-    # READ PICKLE SAMPLE
-    read_pickle_sample = r_agg.read_pickle_sample(output_directry, 'no-noise.pik')
-    print(read_pickle_sample)
-    
-    print(read_pickle_sample['STV']['winners'])
-    
-    temp_a = []
-    for i in read_pickle_sample['STV']['winners']:
-        temp_a.append(i)
-        
-    print(temp_a[0])
-    # READ PICKLE SAMPLE
+    return no_noise_pickle_path
 
 
 # 'ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki'
@@ -88,18 +77,21 @@ def executeExp(index=None):
     # pref_plotter.plotGraph()
     # pref_plotter.print_matrix()
     
-    compute_no_noise_results(pref_plotter)
+    no_noise_pickle_path = compute_no_noise_results(pref_plotter)
     
     worker_list = []
     
-    noise_config = get_config_key('noise',ini_path)
-    m_controller = MuationThreadController(noise_config, input_file_path, output_directry, index)
+    noise_config = get_config_key('noise', ini_path)
+    m_controller = MuationThreadController(noise_config, input_file_path, output_directry, no_noise_pickle_path, index)
     
     m_controller.fork_mutate_index_extreme(worker_list)
     # m_controller.fork_mutate_total(worker_list, [0.5])
     
     for worker in worker_list:
         worker.join() 
+        
+#     for worker in worker_list:
+#         print(worker.noisy_pickle_path)
     
     print('**********DONE**********')
      
