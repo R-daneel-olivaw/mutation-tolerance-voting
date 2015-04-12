@@ -125,37 +125,71 @@ class ResultMeasurement(object):
                 
             return lstRanking            
     
-    def CalculateRankingForPlurality(self):
-        lstRanking = []
-        lstTallyValues = []
+    def CalculateRankingForPlurality(self, bNoise):
         
-        for i in self.noisePickleInstance["PLURALITY"]["tallies"].values():
-            lstTallyValues.append(i)
+        if(bNoise == 0):
+            lstRanking = []
+            lstTallyValues = []
             
-        lstTallyValues.sort(reverse=True)
-
-        for i in range(0, 10):
-            for key, value in self.noisePickleInstance["PLURALITY"]["tallies"].items():
-                if(lstTallyValues[i] == value):
-                    lstRanking.append(key)
-                    
-        return lstRanking
+            for i in self.noisePickleInstance["PLURALITY"]["tallies"].values():
+                lstTallyValues.append(i)
+                
+            lstTallyValues.sort(reverse=True)
     
-    def CalculateRankingForPluralityAtLarge(self):
-        lstRanking = []
-        lstTallyValues = []
-        
-        for i in self.noisePickleInstance["PLURALITY_AT_LARGE"]["tallies"].values():
-            lstTallyValues.append(i)
+            for i in range(0, 10):
+                for key, value in self.noisePickleInstance["PLURALITY"]["tallies"].items():
+                    if(lstTallyValues[i] == value):
+                        lstRanking.append(key)
+                        
+            return lstRanking
+    
+        else:
+            lstRanking = []
+            lstTallyValues = []
             
-        lstTallyValues.sort(reverse=True)
-
-        for i in range(0, 10):
-            for key, value in self.noisePickleInstance["PLURALITY_AT_LARGE"]["tallies"].items():
-                if(lstTallyValues[i] == value):
-                    lstRanking.append(key)        
-        return lstRanking
-
+            for i in self.noNoisePickleInstance["PLURALITY"]["tallies"].values():
+                lstTallyValues.append(i)
+                
+            lstTallyValues.sort(reverse=True)
+    
+            for i in range(0, 10):
+                for key, value in self.noNoisePickleInstance["PLURALITY"]["tallies"].items():
+                    if(lstTallyValues[i] == value):
+                        lstRanking.append(key)
+                        
+            return lstRanking            
+        
+    def CalculateRankingForPluralityAtLarge(self, bNoise):
+        
+        if(bNoise == 0):
+            lstRanking = []
+            lstTallyValues = []
+            
+            for i in self.noisePickleInstance["PLURALITY_AT_LARGE"]["tallies"].values():
+                lstTallyValues.append(i)
+                
+            lstTallyValues.sort(reverse=True)
+    
+            for i in range(0, 10):
+                for key, value in self.noisePickleInstance["PLURALITY_AT_LARGE"]["tallies"].items():
+                    if(lstTallyValues[i] == value):
+                        lstRanking.append(key)        
+            return lstRanking
+        
+        else:
+            lstRanking = []
+            lstTallyValues = []
+            
+            for i in self.noNoisePickleInstance["PLURALITY_AT_LARGE"]["tallies"].values():
+                lstTallyValues.append(i)
+                
+            lstTallyValues.sort(reverse=True)
+    
+            for i in range(0, 10):
+                for key, value in self.noNoisePickleInstance["PLURALITY_AT_LARGE"]["tallies"].items():
+                    if(lstTallyValues[i] == value):
+                        lstRanking.append(key)        
+            return lstRanking
         
     def CalculatektDistance(self, originalRanking, MutatedRanking):
         
