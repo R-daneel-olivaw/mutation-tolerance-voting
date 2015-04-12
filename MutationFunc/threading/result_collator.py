@@ -26,7 +26,8 @@ class ResultCollator(object):
             dist_stv = worker.distance_stv
             
             row={}
-            row['stv'] = float(dist_stv)
+            row['stv_dist'] = dist_stv[0]
+            row['stv_pval'] = dist_stv[1]
             
             rows.append(row)
             
