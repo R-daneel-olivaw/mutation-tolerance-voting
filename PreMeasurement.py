@@ -81,27 +81,49 @@ class ResultMeasurement(object):
             return lstRanking
                     
     
-    def CalculateRankingForIRV(self):
+    def CalculateRankingForIRV(self, bNoise):
         
-        lstRounds = self.noisePickleInstance["IRV"]["rounds"]
-        lstRanking = []
-        
-#         lstRanking.append(self.noisePickleInstance["IRV"]["winner"])
-        lstLastRoundValue = []
-        for i in lstRounds[7]["tallies"].values():
-            lstLastRoundValue.append(i)
-        
-        lstLastRoundValue.sort(reverse = True)
-        
-        for i in range(0, 3):
-            for key, value in lstRounds[7]["tallies"].items():
-                if(lstLastRoundValue[i] == value):
-                    lstRanking.append(key)
-                    
-        for i in range(6, -1, -1):
-            lstRanking.append(lstRounds[i]["loser"])
+        if(bNoise == 0):
+            lstRounds = self.noisePickleInstance["IRV"]["rounds"]
+            lstRanking = []
             
-        return lstRanking
+    #         lstRanking.append(self.noisePickleInstance["IRV"]["winner"])
+            lstLastRoundValue = []
+            for i in lstRounds[7]["tallies"].values():
+                lstLastRoundValue.append(i)
+            
+            lstLastRoundValue.sort(reverse = True)
+            
+            for i in range(0, 3):
+                for key, value in lstRounds[7]["tallies"].items():
+                    if(lstLastRoundValue[i] == value):
+                        lstRanking.append(key)
+                        
+            for i in range(6, -1, -1):
+                lstRanking.append(lstRounds[i]["loser"])
+                
+            return lstRanking
+        
+        else:
+            lstRounds = self.noNoisePickleInstance["IRV"]["rounds"]
+            lstRanking = []
+            
+    #         lstRanking.append(self.noisePickleInstance["IRV"]["winner"])
+            lstLastRoundValue = []
+            for i in lstRounds[7]["tallies"].values():
+                lstLastRoundValue.append(i)
+            
+            lstLastRoundValue.sort(reverse = True)
+            
+            for i in range(0, 3):
+                for key, value in lstRounds[7]["tallies"].items():
+                    if(lstLastRoundValue[i] == value):
+                        lstRanking.append(key)
+                        
+            for i in range(6, -1, -1):
+                lstRanking.append(lstRounds[i]["loser"])
+                
+            return lstRanking            
     
     def CalculateRankingForPlurality(self):
         lstRanking = []
