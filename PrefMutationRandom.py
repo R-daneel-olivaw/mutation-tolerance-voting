@@ -16,13 +16,14 @@ class MutationRandom(object):
     classdocs
     '''
     
-    def __init__(self, prefpath):
+    def __init__(self, prefpath, index):
         '''
         Constructor
         '''
         
         self.prefpath = prefpath
-        self.LoadPref();
+        self.LoadPref()
+        self.index = index
         
     def LoadPref(self):
         
@@ -89,7 +90,7 @@ class MutationRandom(object):
     #votes in the middle means the rest six  
     
     def WriteToDirectory(self, OutPath, MutationPercentage, MutationType):
-        OutputDirectory = OutPath + "/Mutation" + "_" + str(MutationPercentage) + "_" + str(MutationType) + ".csv"
+        OutputDirectory = OutPath + "/Mutation" + "_" + str(MutationPercentage) + "_" + str(MutationType) + str(self.index) + ".csv"
         self.raw_pref.getDf().to_csv(OutputDirectory, encoding='utf-8', index=True)  
         
         return OutputDirectory                  
