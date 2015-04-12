@@ -25,7 +25,8 @@ class MuationThreadController(object):
     def compare_ranking(self, no_noise_pickle_path, noisy_pickle_path):
         rm = ResultMeasurement(noisy_pickle_path, no_noise_pickle_path)
         
-        threading.current_thread().distance_stv = rm.CalculatektDistance(rm.CalculateRankingForSTV(1), rm.CalculateRankingForSTV(0))
+#         threading.current_thread().distance_stv = rm.CalculatektDistance(rm.CalculateRankingForSTV(1), rm.CalculateRankingForSTV(0))
+        threading.current_thread().distance_irv = rm.CalculatektDistance(rm.CalculateRankingForIRV(1), rm.CalculateRankingForIRV(0))
         
     def fork_mutate_index_extreme_degree(self, degree):
         

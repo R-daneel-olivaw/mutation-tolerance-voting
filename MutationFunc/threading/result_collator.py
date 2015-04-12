@@ -23,12 +23,15 @@ class ResultCollator(object):
     def collate(self):
         rows = []
         for worker in self.worker_list:
-            dist_stv = worker.distance_stv
+#             dist_stv = worker.distance_stv
+            dist_irv = worker.distance_irv
             
             row={}
-            row['stv_dist'] = dist_stv[0]
-            row['stv_pval'] = dist_stv[1]
+#             row['stv_dist'] = dist_stv[0]
+#             row['stv_pval'] = dist_stv[1]
             
+            row['irv_dist'] = dist_irv[0]
+            row['irv_pval'] = dist_irv[1]            
             rows.append(row)
             
         df = pd.DataFrame(rows)
