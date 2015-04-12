@@ -31,29 +31,53 @@ class ResultMeasurement(object):
         self.noNoisePickleInstance = self.read_pickle_path(self.NoNoisePicklePath)
          
 #         print(self.noisePickleInstance["PLURALITY_AT_LARGE"]["winners"])
-    
-    def CalculateRankingForSTV(self):
-        lstRounds = self.noisePickleInstance["STV"]["rounds"]
-        lstLastRound = lstRounds[7]["winners"]
-        
-#         return list(lstLastRound)[]
-        lstRanking = []
-        lstRanking.append(list(lstRounds[0]["winners"])[0])
-        lstRanking.append(list(lstLastRound)[0])
-        lstRanking.append(list(lstLastRound)[1])
-        
-        
-        for key in lstRounds[7]["tallies"].keys():
-            if(key != list(lstLastRound)[0] and key != list(lstLastRound)[1]):
-                loserInLastRound = key
-        
-        lstRanking.append(loserInLastRound)
 
-        for i in range(6, 0, -1):
-            lstRanking.append(lstRounds[i]["loser"])
+# bNoise is a boolean value for deciding to calculate original ranking or mutated ranking; 
+# 0 means calculating mutated one, else calculate original one
+    def CalculateRankingForSTV(self, bNoise):
+        
+        if(bNoise == 0):
+            lstRounds = self.noisePickleInstance["STV"]["rounds"]
+            lstLastRound = lstRounds[7]["winners"]
+        
+            lstRanking = []
+            lstRanking.append(list(lstRounds[0]["winners"])[0])
+            lstRanking.append(list(lstLastRound)[0])
+            lstRanking.append(list(lstLastRound)[1])
+        
+        
+            for key in lstRounds[7]["tallies"].keys():
+                if(key != list(lstLastRound)[0] and key != list(lstLastRound)[1]):
+                    loserInLastRound = key
+        
+            lstRanking.append(loserInLastRound)
 
-        return lstRanking
-#         return self.noisePickleInstance["STV"]["rounds"]
+            for i in range(6, 0, -1):
+                lstRanking.append(lstRounds[i]["loser"])
+
+            return lstRanking
+        
+        else:
+            lstRounds = self.noNoisePickleInstance["STV"]["rounds"]
+            lstLastRound = lstRounds[7]["winners"]
+        
+            lstRanking = []
+            lstRanking.append(list(lstRounds[0]["winners"])[0])
+            lstRanking.append(list(lstLastRound)[0])
+            lstRanking.append(list(lstLastRound)[1])
+        
+        
+            for key in lstRounds[7]["tallies"].keys():
+                if(key != list(lstLastRound)[0] and key != list(lstLastRound)[1]):
+                    loserInLastRound = key
+        
+            lstRanking.append(loserInLastRound)
+
+            for i in range(6, 0, -1):
+                lstRanking.append(lstRounds[i]["loser"])
+
+            return lstRanking
+                    
     
     def CalculateRankingForIRV(self):
         
