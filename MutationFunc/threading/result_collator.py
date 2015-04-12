@@ -25,19 +25,28 @@ class ResultCollator(object):
         for worker in self.worker_list:
 #             dist_stv = worker.distance_stv
             dist_irv = worker.distance_irv
+            dist_plu = worker.distance_plu
+            dist_pluL = worker.distance_pluatL
             
-            row={}
+            row = {}
 #             row['stv_dist'] = dist_stv[0]
 #             row['stv_pval'] = dist_stv[1]
             
             row['irv_dist'] = dist_irv[0]
-            row['irv_pval'] = dist_irv[1]            
+            row['irv_pval'] = dist_irv[1]
+            
+            row['plurality_dist'] = dist_plu[0]
+            row['plurality_dpval'] = dist_plu[1]
+            
+            row['plurality_at_large_dist'] = dist_pluL[0]
+            row['plurality_at_large_pval'] = dist_pluL[1]
+                        
             rows.append(row)
             
         df = pd.DataFrame(rows)
         self.distance_df = df
         
-        ocsv_path = self.output_directory+'/result_distance.csv' 
+        ocsv_path = self.output_directory + '/result_distance.csv' 
         df.to_csv(ocsv_path, encoding='utf-8', index=True)
     
     def graph_results(self):

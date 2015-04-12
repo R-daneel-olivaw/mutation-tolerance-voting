@@ -27,6 +27,8 @@ class MuationThreadController(object):
         
 #         threading.current_thread().distance_stv = rm.CalculatektDistance(rm.CalculateRankingForSTV(1), rm.CalculateRankingForSTV(0))
         threading.current_thread().distance_irv = rm.CalculatektDistance(rm.CalculateRankingForIRV(1), rm.CalculateRankingForIRV(0))
+        threading.current_thread().distance_plu = rm.CalculatektDistance(rm.CalculateRankingForPlurality(1), rm.CalculateRankingForPlurality(0))
+        threading.current_thread().distance_pluatL = rm.CalculatektDistance(rm.CalculateRankingForPluralityAtLarge(1), rm.CalculateRankingForPluralityAtLarge(0))
         
     def fork_mutate_index_extreme_degree(self, degree):
         
