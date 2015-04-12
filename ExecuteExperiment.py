@@ -11,6 +11,7 @@ from code.sf.sf_plurality_at_large import ImplPluralityAtLarge
 from code.sf.sf_stv import ImplSTV
 from code.result_agg import ResultAggregator
 from MutationFunc.threading.muation_thread_controller import MuationThreadController
+from MutationFunc.threading.result_collator import ResultCollator
 import ntpath
 import configparser
 
@@ -65,7 +66,6 @@ def compute_no_noise_results(pref_plotter):
     
     return no_noise_pickle_path
 
-
 # 'ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki'
 def executeExp(index=None):
     
@@ -89,9 +89,9 @@ def executeExp(index=None):
     
     for worker in worker_list:
         worker.join() 
-        
-#     for worker in worker_list:
-#         print(worker.noisy_pickle_path)
+    
+    rc = ResultCollator(worker_list, output_directry)
+    rc.collate()
     
     print('**********DONE**********')
      
