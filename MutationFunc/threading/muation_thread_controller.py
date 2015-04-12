@@ -33,7 +33,7 @@ class MuationThreadController(object):
         path = None            
         path = self.output_directry 
         
-        p8peng_out = PrefMutationRandom.MutationRandom(self.pref_path).GetResult(degree, 0, path)
+        p8peng_out = PrefMutationRandom.MutationRandom(self.pref_path, self.index).GetResult(degree, 0, path)
         noisyPP = PrefPlotter(p8peng_out, True)    
         noisy_pickle_path = self.compute_noisy_results(noisyPP, self.path_leaf(p8peng_out))
         
