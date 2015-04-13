@@ -24,8 +24,10 @@ class MuationThreadController(object):
     
     def compare_ranking(self, no_noise_pickle_path, noisy_pickle_path):
         rm = ResultMeasurement(noisy_pickle_path, no_noise_pickle_path)
-        
-        threading.current_thread().distance_stv = rm.CalculatektDistance(rm.CalculateRankingForSTV(1), rm.CalculateRankingForSTV(0))
+        try:
+            threading.current_thread().distance_stv = rm.CalculatektDistance(rm.CalculateRankingForSTV(1), rm.CalculateRankingForSTV(0))
+        except:
+            print('prevented failure STV')
         threading.current_thread().distance_irv = rm.CalculatektDistance(rm.CalculateRankingForIRV(1), rm.CalculateRankingForIRV(0))
         threading.current_thread().distance_plu = rm.CalculatektDistance(rm.CalculateRankingForPlurality(1), rm.CalculateRankingForPlurality(0))
         threading.current_thread().distance_pluatL = rm.CalculatektDistance(rm.CalculateRankingForPluralityAtLarge(1), rm.CalculateRankingForPluralityAtLarge(0))

@@ -57,7 +57,8 @@ class ResultCollator(object):
         self.distance_df = df
         
         ocsv_path = self.output_directory + '/result_distance.csv' 
-        df.to_csv(ocsv_path, encoding='utf-8', index=True)
+        with open(ocsv_path, 'a') as f:
+            df.to_csv(f, header=False,index=False)
     
     def graph_results(self):
         
