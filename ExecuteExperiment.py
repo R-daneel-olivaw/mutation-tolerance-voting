@@ -84,7 +84,8 @@ def executeExp(index=None):
     noise_config = get_config_key('noise', ini_path)
     m_controller = MuationThreadController(noise_config, input_file_path, output_directry, no_noise_pickle_path, index)
     
-    m_controller.fork_mutate_index_extreme(worker_list)
+    #m_controller.fork_mutate_index_extreme(worker_list)
+    m_controller.fork_mutate_index_middle(worker_list)
     # m_controller.fork_mutate_total(worker_list, [0.5])
     
     for worker in worker_list:

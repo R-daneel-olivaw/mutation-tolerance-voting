@@ -44,6 +44,19 @@ class MuationThreadController(object):
         self.compare_ranking(self.no_noise_pickle_path, noisy_pickle_path)
         
         print('Completed ', degree)
+        
+    def fork_mutate_index_middle_degree(self, degree):
+        
+        path = None            
+        path = self.output_directry 
+        
+        p8peng_out = PrefMutationRandom.MutationRandom(self.pref_path, self.index).GetResult(degree, 1, path)
+        noisyPP = PrefPlotter(p8peng_out, True)    
+        noisy_pickle_path = self.compute_noisy_results(noisyPP, self.path_leaf(p8peng_out))
+        
+        self.compare_ranking(self.no_noise_pickle_path, noisy_pickle_path)
+        
+        print('Completed ', degree)
     
     def compute_noisy_results(self, noisyPP, pickle_name):
     
@@ -78,6 +91,19 @@ class MuationThreadController(object):
     
     
     def fork_mutate_index_extreme(self, worker_list):
+        
+        degree_list = self.get_config_value('extremes_noise_level_list')
+        degree_list = map(float, degree_list.split(','))
+        
+        for degree in degree_list:
+            print('WORKING ON ', degree)
+            worker = Thread(target=self.fork_mutate_index_extreme_degree, args=(degree,))
+            # worker.setDaemon(True)
+            worker.start()
+            
+            worker_list.append(worker)
+    
+    def fork_mutate_index_middle(self, worker_list):
         
         degree_list = self.get_config_value('extremes_noise_level_list')
         degree_list = map(float, degree_list.split(','))
