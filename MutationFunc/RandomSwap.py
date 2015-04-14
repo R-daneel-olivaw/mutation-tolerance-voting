@@ -42,8 +42,19 @@ class Mutation(object):
     def normalNoiseMut(self):
         df_copy = self.pref_plotter.raw_pref.getDf().copy(True)
         for index, row in df_copy.iterrows():
-            self.entry=row
-            self.normalNoise(self.degree) 
+            l=row.copy(True)              
+            for index in range(0,10):
+                random.seed(time.time())
+                tem=0
+                if(random.random()<self.degree*self.gaussianFunc(index)):
+                    random.seed(time.time())                
+                    tem=random.randint(0,9)                                                                
+                    ori=l[index]
+                    l[index]=tem
+                    i=l.tolist().index(tem)
+                    l[i]=ori   
+            for index in range(0,10): 
+                row[index]=l[index]; 
         path=self.outputfile+"/NormalMutation-"+str(self.degree)+"-"+str(self.index)+".csv"           
         df_copy.to_csv(path, encoding='utf-8', index=True)
         return path
@@ -87,7 +98,7 @@ class Mutation(object):
                 tem=random.randint(0,9)                                                                
                 ori=l[index]
                 l[index]=tem
-                i=self.entry.tolist().index(tem)
+                i=l.index(tem)
                 l[i]=ori   
         for index in range(0,10): 
             self.entry[index]=l[index];
@@ -126,7 +137,7 @@ class Mutation(object):
                 tem=random.randint(0,9)                                                                
                 ori=l[index]
                 l[index]=tem
-                i=self.entry.tolist().index(tem)
+                i=l.index(tem)
                 l[i]=ori   
         for index in range(0,10): 
             self.entry[index]=l[index];
@@ -141,7 +152,7 @@ class Mutation(object):
                 tem=random.randint(0,9)                                                                
                 ori=l[index]
                 l[index]=tem
-                i=self.entry.tolist().index(tem)
+                i=l.index(tem)
                 l[i]=ori   
         for index in range(0,10): 
             self.entry[index]=l[index];
