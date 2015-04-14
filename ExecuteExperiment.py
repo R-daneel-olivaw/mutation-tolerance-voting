@@ -85,8 +85,10 @@ def executeExp(index=None):
     m_controller = MuationThreadController(noise_config, input_file_path, output_directry, no_noise_pickle_path, index)
     
     #m_controller.fork_mutate_index_extreme(worker_list)
-    m_controller.fork_mutate_index_middle(worker_list)
+#     m_controller.fork_mutate_index_middle(worker_list)
     # m_controller.fork_mutate_total(worker_list, [0.5])
+#     m_controller.fork_mutate_constructive(worker_list)
+    m_controller.fork_mutate_normal(worker_list)
     
     for worker in worker_list:
         worker.join() 

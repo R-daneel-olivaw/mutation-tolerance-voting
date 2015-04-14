@@ -9,21 +9,63 @@ import time
 import math
 from code.prefreaders import SushiPref
 from code.prefUtil import SushiPrefUtil
+from code.sf.sf_stv import ImplSTV
+from code.sf.sf_irv import ImplIRV
+from code.sf.sf_plurality import ImplPlurality
+from code.sf.sf_plurality_at_large import ImplPluralityAtLarge
+from code.pref_matrix_plot import PrefPlotter
 
 class Mutation(object):
     '''
     classdocs
     '''
-
+    inputfile=None
+    outputfile=None
+    index=0
     entry = None
     degree=0.5
-    def __init__(self, entry,degree):
+    pref_plotter=PrefPlotter('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc')
+    def __init__(self, inputfile,outputfile,index,degree):
         '''
         Constructor
         '''
-        self.entry=entry;
+        self.inputfile=inputfile;
+        self.outputfile=outputfile;
+        self.index=index;
         self.degree=degree
-        
+        pref_plotter = PrefPlotter(inputfile)
+        pc = ImplSTV(pref_plotter.raw_pref)
+        pc = ImplIRV(pref_plotter.raw_pref)
+        pc = ImplPlurality(pref_plotter.raw_pref)
+        pc = ImplPluralityAtLarge(pref_plotter.raw_pref)
+    
+    def normalNoiseMut(self):
+        df_copy = self.pref_plotter.raw_pref.getDf().copy(True)
+        for index, row in df_copy.iterrows():
+            self.entry=row
+            self.normalNoise(self.degree) 
+        path=self.outputfile+"/NormalMutation-"+str(self.degree)+"-"+str(self.index)+".csv"           
+        df_copy.to_csv(path, encoding='utf-8', index=True)
+        return path
+    
+    def destructiveMut(self):
+        df_copy = self.pref_plotter.raw_pref.getDf().copy(True)
+        for index, row in df_copy.iterrows():
+            self.entry=row
+            self.destructiveManipu(self.degree)            
+        path=self.outputfile+"/DesMutation-"+str(self.degree)+"-"+str(self.index)+".csv"           
+        df_copy.to_csv(path, encoding='utf-8', index=True)
+        return path
+    
+    def constructiveMut(self):
+        df_copy = self.pref_plotter.raw_pref.getDf().copy(True)
+        for index, row in df_copy.iterrows():
+            self.entry=row
+            self.constructiveManipu(self.degree)            
+        path=self.outputfile+"/ConMutation-"+str(self.degree)+"-"+str(self.index)+".csv"           
+        df_copy.to_csv(path, encoding='utf-8', index=True)
+        return path
+               
     def LoadPref(self):
         
         self.raw_pref = SushiPref(self.prefpath)
@@ -40,12 +82,12 @@ class Mutation(object):
         for index in range(0,10):
             random.seed(time.time())
             tem=0
-            if(random.random()<2*degree*self.gaussianFunc(index)):
+            if(random.random()<degree*self.gaussianFunc(index)):
                 random.seed(time.time())                
                 tem=random.randint(0,9)                                                                
                 ori=l[index]
                 l[index]=tem
-                i=self.entry.tolist().index(ori)
+                i=self.entry.tolist().index(tem)
                 l[i]=ori   
         for index in range(0,10): 
             self.entry[index]=l[index];
@@ -84,7 +126,7 @@ class Mutation(object):
                 tem=random.randint(0,9)                                                                
                 ori=l[index]
                 l[index]=tem
-                i=self.entry.tolist().index(ori)
+                i=self.entry.tolist().index(tem)
                 l[i]=ori   
         for index in range(0,10): 
             self.entry[index]=l[index];
@@ -99,7 +141,7 @@ class Mutation(object):
                 tem=random.randint(0,9)                                                                
                 ori=l[index]
                 l[index]=tem
-                i=self.entry.tolist().index(ori)
+                i=self.entry.tolist().index(tem)
                 l[i]=ori   
         for index in range(0,10): 
             self.entry[index]=l[index];
