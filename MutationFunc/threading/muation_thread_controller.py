@@ -195,3 +195,30 @@ class MuationThreadController(object):
             
             worker_list.append(worker)
         
+    def fork_mutate_destructive_degree(self, degree):
+        
+        print('WORKING ON NORMAL degree :', degree)
+        
+        mut = Mutation(self.pref_path, self.output_directry, self.index, degree);
+        o_path = mut.destructiveMut();
+        
+        noisyPP = PrefPlotter(o_path, True)    
+        noisy_pickle_path = self.compute_noisy_results(noisyPP, self.path_leaf(o_path))
+        
+        self.compare_ranking(self.no_noise_pickle_path, noisy_pickle_path)
+        
+        print('Completed NORMAL degree :', degree)
+            
+    def fork_mutate_destructive(self, worker_list):
+        
+        degree_list = self.get_config_value('destructive_noise_level_list')
+        degree_list = map(float, degree_list.split(','))
+        
+        for degree in degree_list:
+            print('WORKING ON ', degree)
+            worker = Thread(target=self.fork_mutate_destructive_degree, args=(degree,))
+            # worker.setDaemon(True)
+            worker.start()
+            
+            worker_list.append(worker)
+        
