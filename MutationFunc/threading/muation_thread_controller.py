@@ -110,7 +110,7 @@ class MuationThreadController(object):
         
         for degree in degree_list:
             print('WORKING ON ', degree)
-            worker = Thread(target=self.fork_mutate_index_extreme_degree, args=(degree,))
+            worker = Thread(target=self.fork_mutate_index_middle_degree, args=(degree,))
             # worker.setDaemon(True)
             worker.start()
             
