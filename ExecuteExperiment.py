@@ -33,13 +33,21 @@ def executeExp():
 #     pref_matrix.plot()
 #     plt.show()
     #print(pref_plotter.raw_pref.getDf())
-#     for num in range(1,11):
-#         df_copy = pref_plotter.raw_pref.getDf().copy(True)
-#         for index, row in df_copy.iterrows():
-#             randomswap=Mutation(row,0.5)
-#             randomswap.destructiveManipu(1);
-#         df_copy.to_csv("C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/des"+str(num)+".csv", encoding='utf-8', index=True)
-#         PrefPlotter('C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/des'+str(num)+".csv").plotGraph()
+    for num in range(1,11):
+        df_copy = pref_plotter.raw_pref.getDf().copy(True)
+        for index, row in df_copy.iterrows():
+            randomswap=Mutation(row,0.5)
+            randomswap.destructiveManipu(1);
+        df_copy.to_csv("C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/des"+str(num)+".csv", encoding='utf-8', index=True)
+        PrefPlotter('C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/des'+str(num)+".csv").plotGraph()
+    
+    for num in range(1,11):
+        df_copy = pref_plotter.raw_pref.getDf().copy(True)
+        for index, row in df_copy.iterrows():
+            randomswap=Mutation(row,0.5)
+            randomswap.constructiveManipu(1)
+        df_copy.to_csv("C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/con"+str(num)+".csv", encoding='utf-8', index=True)
+        PrefPlotter('C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/con'+str(num)+".csv").plotGraph()
 # df_copy.to_csv('C:/Users/Akshat/git/mutation-tolerance-voting/output/o2.soc', encoding='utf-8', index=True)
 # PrefPlotter('C:/Users/Akshat/git/mutation-tolerance-voting/output/o2.soc').plotGraph()
 #     for index, row in pref_plotter.raw_pref.getDf().iterrows():
@@ -55,7 +63,7 @@ def executeExp():
         for index, row in df_copy.iterrows():
             randomswap=Mutation(row,0.5)
             randomswap.normalNoise(1)            
-        df_copy.to_csv("C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/des"+str(num)+".csv", encoding='utf-8', index=True)
-        PrefPlotter('C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/des'+str(num)+".csv").plotGraph()
+        df_copy.to_csv("C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/normal"+str(num)+".csv", encoding='utf-8', index=True)
+        PrefPlotter('C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/normal'+str(num)+".csv").plotGraph()
 if __name__ == '__main__':
     executeExp()

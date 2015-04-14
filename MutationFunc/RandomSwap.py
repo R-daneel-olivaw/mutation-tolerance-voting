@@ -40,12 +40,12 @@ class Mutation(object):
         for index in range(0,10):
             random.seed(time.time())
             tem=0
-            if(random.random()<2*degree*self.gaussianFunc(index)):
+            if(random.random()<degree*self.gaussianFunc(index)):
                 random.seed(time.time())                
                 tem=random.randint(0,9)                                                                
                 ori=l[index]
                 l[index]=tem
-                i=self.entry.tolist().index(ori)
+                i=self.entry.tolist().index(tem)
                 l[i]=ori   
         for index in range(0,10): 
             self.entry[index]=l[index];
@@ -84,7 +84,7 @@ class Mutation(object):
                 tem=random.randint(0,9)                                                                
                 ori=l[index]
                 l[index]=tem
-                i=self.entry.tolist().index(ori)
+                i=self.entry.tolist().index(tem)
                 l[i]=ori   
         for index in range(0,10): 
             self.entry[index]=l[index];
@@ -99,7 +99,7 @@ class Mutation(object):
                 tem=random.randint(0,9)                                                                
                 ori=l[index]
                 l[index]=tem
-                i=self.entry.tolist().index(ori)
+                i=self.entry.tolist().index(tem)
                 l[i]=ori   
         for index in range(0,10): 
             self.entry[index]=l[index];
