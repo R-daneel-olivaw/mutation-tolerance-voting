@@ -13,7 +13,7 @@ from MutationFunc.RandomSwap import Mutation
 # 'ebi', 'anago', 'maguro', 'ika', 'uni', 'sake', 'tamago', 'toro', 'tekka-maki', 'kappa-maki'
 
 def executeExp():
-
+    PrefPlotter('C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/NormalNoise1.csv').plotGraph()
     pref_plotter = PrefPlotter('C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc')
     pref_plotter.plotGraph()
     pref_plotter.print_matrix()
@@ -33,27 +33,29 @@ def executeExp():
 #     pref_matrix.plot()
 #     plt.show()
     #print(pref_plotter.raw_pref.getDf())
-    for num in range(1,11):
-        df_copy = pref_plotter.raw_pref.getDf().copy(True)
-        for index, row in df_copy.iterrows():
-            randomswap=Mutation(row,0.5)
-            randomswap.normalNoise();
-#
+#     for num in range(1,11):
+#         df_copy = pref_plotter.raw_pref.getDf().copy(True)
+#         for index, row in df_copy.iterrows():
+#             randomswap=Mutation(row,0.5)
+#             randomswap.destructiveManipu(1);
+#         df_copy.to_csv("C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/des"+str(num)+".csv", encoding='utf-8', index=True)
+#         PrefPlotter('C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/des'+str(num)+".csv").plotGraph()
 # df_copy.to_csv('C:/Users/Akshat/git/mutation-tolerance-voting/output/o2.soc', encoding='utf-8', index=True)
 # PrefPlotter('C:/Users/Akshat/git/mutation-tolerance-voting/output/o2.soc').plotGraph()
 #     for index, row in pref_plotter.raw_pref.getDf().iterrows():
 #         randomswap=Mutation(row,0.5)
 #         randomswap.normalNoise()
 #         print(row)
-        df_copy.to_csv(OutputFilePath+str(num)+".csv", encoding='utf-8', index=True)
+#         df_copy.to_csv(OutputFilePath+str(num)+".csv", encoding='utf-8', index=True)
 #         PrefPlotter(OutputFilePath+str(num)+".csv").plotGraph()
     
-    OutputFilePath="C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/TotalMutation"
+#     OutputFilePath="C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/TotalMutation"
     for num in range(1,11):
         df_copy = pref_plotter.raw_pref.getDf().copy(True)
         for index, row in df_copy.iterrows():
             randomswap=Mutation(row,0.5)
-            randomswap.randomSwap()
-        df_copy.to_csv(OutputFilePath+str(num)+".csv", encoding='utf-8', index=True)
+            randomswap.normalNoise(1)            
+        df_copy.to_csv("C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/des"+str(num)+".csv", encoding='utf-8', index=True)
+        PrefPlotter('C:/Users/pengjie137/git/mutation-tolerance-voting/prefrences/des'+str(num)+".csv").plotGraph()
 if __name__ == '__main__':
     executeExp()
