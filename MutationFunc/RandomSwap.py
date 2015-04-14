@@ -24,7 +24,7 @@ class Mutation(object):
     index=0
     entry = None
     degree=0.5
-    pref_plotter=PrefPlotter('C:/Users/Akshat/git/mutation-tolerance-voting/prefrences/sushi3_preflib/ED-00015-00000001.soc')
+    pref_plotter=PrefPlotter('/home/m5chauha/Akshat/MutationEx/prefrences/sushi3_preflib/ED-00015-00000001.soc')
     def __init__(self, inputfile,outputfile,index,degree):
         '''
         Constructor
