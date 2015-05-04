@@ -88,8 +88,8 @@ def executeExp(index=None):
 #     m_controller.fork_mutate_index_middle(worker_list)
     # m_controller.fork_mutate_total(worker_list, [0.5])
 #     m_controller.fork_mutate_constructive(worker_list)
-    m_controller.fork_mutate_destructive(worker_list)
-#     m_controller.fork_mutate_normal(worker_list)
+#     m_controller.fork_mutate_destructive(worker_list)
+    m_controller.fork_mutate_normal(worker_list)
     
     for worker in worker_list:
         worker.join() 
