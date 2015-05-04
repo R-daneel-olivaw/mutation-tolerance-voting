@@ -3,6 +3,8 @@ The study of mutation tolerance of voting mechanisms
 
 Course project for uWaterloo cource [CS886](https://cs.uwaterloo.ca/~klarson/teaching/W15-886/).
 
+[Final Report](http://www.slideshare.net/akshatvaish/cs886reportmutationtolerance)
+
 ### Dependencies
 The below will need to be installed in the host machine to compile
 
@@ -22,4 +24,4 @@ The below will need to be installed in the host machine to compile
 - [x] Implement Plurality social function
 - [x] Implement Plurality at large social function multiple winner Plurality
 - [x] Implement noise models
-- [ ] Compare noisy results with noiseless results 
+- [x] Compare noisy results with noiseless results 
